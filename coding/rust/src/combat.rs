@@ -15,7 +15,7 @@ struct Enemy {
     damage: i32,
 }
 
-pub fn start_battle(player: &mut Player) {
+pub fn start_battle(player: Player) {
     let mut goblin = Enemy {
         name: String::from("Cave Goblin"),
         hp: 30,
