@@ -37,7 +37,7 @@ fn main(){
                     state = GameState::MainMenu;
                 } else {
                     println!("You died...");
-                    GameState::Exit;
+                    state = GameState::Exit;
                 }
                 
             } 
