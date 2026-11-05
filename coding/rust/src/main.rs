@@ -34,6 +34,7 @@ fn main(){
             }
             GameState::Combat => {
                 combat::start_battle(&mut player);
+                
             } 
             GameState::Resting => todo!()
         }

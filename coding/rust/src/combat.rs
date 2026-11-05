@@ -15,7 +15,7 @@ struct Enemy {
     damage: i32,
 }
 
-pub fn start_battle(player: &mut Player) {
+pub fn start_battle(player: &mut Player) -> bool {
     let mut goblin = Enemy {
         name: String::from("Cave Goblin"),
         hp: 30,
@@ -47,18 +47,19 @@ pub fn start_battle(player: &mut Player) {
         }
 
         if goblin.hp > 0 {
-            player.take_damage(goblin.damage);
-            println!("The {} retaliates, hitting your for \x1b[31m{} damage\x1b[0m!", goblin.name, goblin.damage);
+            if player.take_damage(goblin.damage) {
+                println!("The {} retaliates, hitting your for \x1b[31m{} damage\x1b[0m!", goblin.name, goblin.damage);
+            } else {
+                println!("\n\x1b[31mYou have been defeated in battle... Game Over.\x1b[0m");
+                return false
+            }
 
         }
     }
 
-    if player.health <= 0 {
-        println!("\n\x1b[31mYou have been defeated in battle... Game Over.\x1b[0m");
-        return;
-    } else {
-        println!("\n\x1b[32mVictory! You have vanquished the {}!\x1b[0m", goblin.name);
-        return;
+    println!("\n\x1b[32mVictory! You have vanquished the {}!\x1b[0m", goblin.name);
+    return true;
+    
     }
 }
 

@@ -36,8 +36,6 @@ impl Player {
 
         if self.health <= 0 {
             self.health = 0;
-            println!("Oh no! {} has fallen in battle...", self.name);
-            println!("--- GAME OVER ---");
             false
         } else {
             true
