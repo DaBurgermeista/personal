@@ -22,7 +22,8 @@ fn main(){
     loop {
         match state {
             GameState::MainMenu => {
-                state = run_main_menu(player);
+                player.print_status();
+                state = run_main_menu();
             }
             GameState::Exploring => {
                 println!("\n\x1b[32m[Exploring] You step into the dark woods...\x1b[0m");
@@ -49,8 +50,8 @@ fn main(){
     
 }
 
-fn run_main_menu(player: Player) -> GameState {
-    player::print_status();
+fn run_main_menu() -> GameState {
+    println!("\n--- Actions ---");
     println!("[1] Go Exploring");
     println!("[2] Quit Game");
 
