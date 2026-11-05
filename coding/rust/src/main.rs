@@ -86,20 +86,20 @@ fn main(){
     let mut player = Player::new(trimmed_input);
     
     player.print_status();
-
-    // Action Loop
-    println!("What would you like to do?");
-    println!("[1] Train (Gain EXP)");
-    println!("[2] Venture into the Cave (Take Damage)");
-    println!("[3] See Player Status");
-    println!("[4] Quit");
-    println!("Choose an option (1-4): ");
-    io::stdout().flush().expect("Failed to flush stdout");
-
-    let mut choice = String::new();
-    io::stdin().read_line(&mut choice).expect("Failed to read line");
-
     loop {
+        // Action Loop
+        println!("What would you like to do?");
+        println!("[1] Train (Gain EXP)");
+        println!("[2] Venture into the Cave (Take Damage)");
+        println!("[3] See Player Status");
+        println!("[4] Quit");
+        println!("Choose an option (1-4): ");
+        io::stdout().flush().expect("Failed to flush stdout");
+
+        let mut choice = String::new();
+        io::stdin().read_line(&mut choice).expect("Failed to read line");
+
+    
         match choice.trim() {
             "1" => {
                 println!("\nYou practice your sword swings!");
