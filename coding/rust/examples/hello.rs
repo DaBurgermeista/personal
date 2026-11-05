@@ -32,7 +32,7 @@ impl Player {
     // Taking damage
     fn take_damage(&mut self, amount: i32) {
         self.health -= amount;
-        println!("{} took {} damage!", self.name, self.amount);
+        println!("{} took {} damage!", self.name, amount);
     }
 }
 
