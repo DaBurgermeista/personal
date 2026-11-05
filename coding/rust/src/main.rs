@@ -33,7 +33,7 @@ fn main(){
                 break;
             }
             GameState::Combat => {
-                start_battle(player);
+                combat::start_battle(player);
             } 
             GameState::Resting => todo!()
         }
