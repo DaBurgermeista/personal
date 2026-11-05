@@ -28,6 +28,12 @@ impl Player {
             self.name, self.level, self.health, self.max_health
         );
     }
+
+    // Taking damage
+    fn take_damage(&mut self, amount: i32) {
+        self.health -= amount;
+        println!("{} took {} damage!", self.name, self.amount);
+    }
 }
 
 fn main(){
@@ -47,4 +53,6 @@ fn main(){
     
     // Call the status method
     player.print_status();
+
+    player.take_damage(5);
 }
