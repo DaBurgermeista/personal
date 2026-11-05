@@ -1,5 +1,6 @@
 // src/combat.rs
 
+use crate::enemy::Enemy;
 use crate::player::Player;
 use std::io::{self, Write};
 
@@ -9,33 +10,21 @@ pub enum CombatAction {
     Flee,
 }
 
-struct Enemy {
-    name: String,
-    hp: i32,
-    damage: i32,
-    exp: i32,
-}
-
 pub fn start_battle(player: &mut Player) -> bool {
-    let mut goblin = Enemy {
-        name: String::from("Cave Goblin"),
-        hp: 30,
-        damage: 8,
-        exp: 5,
-    };
+    let mut enemy = Enemy::spawn_random();
 
-    println!("\n\x1b[31mA wild {} rushes out from the shadows!\x1b[0m", goblin.name);
+    println!("\n\x1b[31mA wild {} rushes out from the shadows!\x1b[0m", enemy.name);
 
-    while player.health > 0 && goblin.hp > 0 {
-        print_combat_status(player, &goblin);
+    while player.health > 0 && enemy.health > 0 {
+        print_combat_status(player, &enemy);
 
         let action = get_combat_action();
 
         match action {
             CombatAction::Attack => {
                 let player_damage = 10;
-                goblin.hp -= player_damage;
-                println!("\nYou slice the {} for \x1b[36m{} damage\x1b[0m!", goblin.name, player_damage);
+                enemy.health -= player_damage;
+                println!("\nYou slice the {} for \x1b[36m{} damage\x1b[0m!", enemy.name, player_damage);
             }
             CombatAction::Rest => {
                 let heal_amount = 15;
@@ -48,9 +37,9 @@ pub fn start_battle(player: &mut Player) -> bool {
             }
         }
 
-        if goblin.hp > 0 {
-            if player.take_damage(goblin.damage) {
-                println!("The {} retaliates, hitting your for \x1b[31m{} damage\x1b[0m!", goblin.name, goblin.damage);
+        if enemy.health > 0 {
+            if player.take_damage(enemy.damage) {
+                println!("The {} retaliates, hitting your for \x1b[31m{} damage\x1b[0m!", enemy.name, enemy.damage);
             } else {
                 println!("\n\x1b[31mYou have been defeated in battle... Game Over.\x1b[0m");
                 return false
@@ -59,15 +48,15 @@ pub fn start_battle(player: &mut Player) -> bool {
         }
     }
 
-    println!("\n\x1b[32mVictory! You have vanquished the {}!\x1b[0m", goblin.name);
-    player.add_experience(goblin.exp);
+    println!("\n\x1b[32mVictory! You have vanquished the {}!\x1b[0m", enemy.name);
+    player.add_experience(enemy.exp);
     return true
 }
 
 fn print_combat_status(player: &Player, enemy: &Enemy) {
     println!("\n-------------------------------");
     println!("{}: \x1b[32m{}/{} HP\x1b[0m", player.name, player.health, player.max_health);
-    println!("{}: \x1b[31m{} HP\x1b[0m", enemy.name, enemy.hp);
+    println!("{}: \x1b[31m{} HP\x1b[0m", enemy.name, enemy.health);
     println!("-------------------------------");
     println!("[1] Attack");
     println!("[2] Rest / Catch Breath");
