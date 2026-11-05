@@ -90,6 +90,6 @@ fn main(){
     player.take_damage(5);
     player.add_experience(14);
     player.print_status();
-    player.take_damage(40);
+    player.take_damage(100);
 
 }
