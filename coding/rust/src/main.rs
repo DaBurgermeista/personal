@@ -59,7 +59,7 @@ impl Player {
             self.health = self.max_health;
 
             println!("\n🎉 LEVEL UP! You are now Level {}", self.level);
-            println!("Max HP increased! Current HP fully restored to {}.", player.max_health);
+            println!("Max HP increased! Current HP fully restored to {}.", self.max_health);
         }
     }
 }
