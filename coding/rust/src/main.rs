@@ -85,10 +85,13 @@ fn main(){
     // Create the player using constructor
     let mut player = Player::new(trimmed_input);
     
-    println!("You stand at a dusty crossroads. What do you do?");
-    println!("[1] Go North (towards the mountains)");
-    println!("[2] Go South (towards the village)");
-    println!("[3] Rest by the road");
+    player.print_status();
+
+    // Action Loop
+    println!("What would you like to do?");
+    println!("[1] Train (Gain EXP)");
+    println!("[2] Venture into the Cave (Take Damage)");
+    println!("[3] Do nothing");
     println!("Choose an option (1-3): ");
     io::stdout().flush().expect("Failed to flush stdout");
 
@@ -96,10 +99,20 @@ fn main(){
     io::stdin().read_line(&mut choice).expect("Failed to read line");
 
     match choice.trim() {
-        "1" => println!("\nYou head North. The wind starts to howl."),
-        "2" => println!("\nYou head South. You can smell cooking fires in the distance."),
-        "3" => println!("\nYou sit down and catch your breath. You feel refreshed."),
-        _   => println!("\nInvalid choice! You stand there, looking confused.")
+        "1" => {
+            println!("\nYou practice your sword swings!");
+            player.add_experience(5);
+        }
+        "2" => {
+            println!("\nA bat bites you in the dark!");
+            player.take_damage(10);
+        }
+        "3" | "nothing" => {
+            println!("\nYou decide to take a nap.")
+        }
+        _   => {
+            println!("\nInvalid choice! You stand there, looking confused.")
+        }
     }
     
 }
