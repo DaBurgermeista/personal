@@ -40,10 +40,10 @@ fn main(){
         .read_line(&mut user_input)
         .expect("Failed to read line");
 
-    let trimmed_input = user_input.trim();
+    let trimmed_input = user_input.trim().to_string();
 
     // Create the player using constructor
-    let player = Player::new(trimmed_input.to_string());
+    let player = Player::new(trimmed_input);
     
     // Call the status method
     player.print_status();
