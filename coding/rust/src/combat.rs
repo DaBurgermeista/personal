@@ -58,8 +58,8 @@ pub fn start_battle(player: &mut Player) -> bool {
     }
 
     println!("\n\x1b[32mVictory! You have vanquished the {}!\x1b[0m", goblin.name);
-    return true;
-    
+    return true
+
     }
 }
 
