@@ -32,8 +32,6 @@ impl Player {
     // Taking damage with a death check. Returns 'true' if alive
     pub fn take_damage(&mut self, amount: i32) -> bool {
         self.health -= amount;
-        println!("{} took {} damage!", self.name, amount);
-
         if self.health <= 0 {
             self.health = 0;
             false

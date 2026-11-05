@@ -50,8 +50,8 @@ fn main(){
 }
 
 fn run_main_menu() -> GameState {
-    println!("\n--- MAIN MENU ---");
-    println!("[1] Start New Game");
+    player.print_status();
+    println!("[1] Go Exploring");
     println!("[2] Quit Game");
 
     let choice = get_user_input("\nSelect an option: ");
