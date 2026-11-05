@@ -85,11 +85,21 @@ fn main(){
     // Create the player using constructor
     let mut player = Player::new(trimmed_input);
     
-    // Call the status method
-    player.print_status();
-    player.take_damage(5);
-    player.add_experience(14);
-    player.print_status();
-    player.take_damage(100);
+    println!("You stand at a dusty crossroads. What do you do?");
+    println!("[1] Go North (towards the mountains)");
+    println!("[2] Go South (towards the village)");
+    println!("[3] Rest by the road");
+    println!("Choose an option (1-3): ");
+    io::stdout().flush().expect("Failed to flush stdout");
 
+    let mut choice = String::new();
+    io::stdin().read_line(&mut choice).expect("Failed to read line");
+
+    match choice.trim() {
+        "1" => println!("\nYou head North. The wind starts to howl."),
+        "2" => println!("\nYou head South. You can smell cooking fires in the distance."),
+        "3" => println!("\nYou sit down and catch your breath. You feel refreshed."),
+        _   => println!("\nInvalid choice! You stand there, looking confused.")
+    }
+    
 }
