@@ -50,7 +50,7 @@ impl Player {
             self.experience -= xp_to_level;
 
             // Level up
-            player.level += 1;
+            self.level += 1;
 
             // Increase Max HP as a level bonus
             self.max_health += 10;
