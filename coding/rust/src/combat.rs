@@ -42,7 +42,7 @@ pub fn start_battle(player: &mut Player) -> bool {
             }
             CombatAction::Flee => {
                 println!("\nYou manage to scramble away back to safety!");
-                return;
+                return true
             }
         }
 

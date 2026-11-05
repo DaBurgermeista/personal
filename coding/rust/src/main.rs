@@ -33,7 +33,11 @@ fn main(){
                 break;
             }
             GameState::Combat => {
-                combat::start_battle(&mut player);
+                if combat::start_battle(&mut player) {
+                    state = GameState::MainMenu;
+                } else {
+                    GameState::Exitl
+                }
                 
             } 
             GameState::Resting => todo!()
