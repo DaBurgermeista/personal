@@ -31,8 +31,8 @@ impl Player {
         );
     }
 
-    // Taking damage with a death check
-    fn take_damage(&mut self, amount: i32) {
+    // Taking damage with a death check. Returns 'true' if alive
+    fn take_damage(&mut self, amount: i32) -> bool {
         self.health -= amount;
         println!("{} took {} damage!", self.name, amount);
 
@@ -40,6 +40,9 @@ impl Player {
             self.health = 0;
             println!("Oh no! {} has fallen in battle...", self.name);
             println!("--- GAME OVER ---");
+            false
+        } else {
+            true
         }
     }
 
@@ -102,12 +105,21 @@ fn main(){
     
         match choice.trim() {
             "1" => {
-                println!("\nYou practice your sword swings!");
-                player.add_experience(5);
+                if player.level >= 5 {
+                    println!("\nYou can't learn anymore at this time!");
+                    break;
+                } else {
+                    println!("\nYou practice your sword swings!");
+                    player.add_experience(5);
+                }
             }
             "2" => {
                 println!("\nA bat bites you in the dark!");
-                player.take_damage(10);
+                let is_alive = player.take_damage(10);
+                
+                if !is_alive {
+                    break;
+                }
             }
             "3" => {
                 player.print_status();
