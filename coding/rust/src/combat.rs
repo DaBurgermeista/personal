@@ -73,7 +73,7 @@ fn print_combat_status(player: &Player, enemy: &Enemy) {
 fn get_combat_action() -> CombatAction {
     loop {
         print!("Choose your action: ");
-        let _ = io::stdout.flush();
+        let _ = io::stdout().flush();
 
         let mut input = String::new();
         io::stdin().read_line(&mut input).expect("Failed to read");
