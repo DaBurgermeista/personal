@@ -31,6 +31,7 @@ fn main(){
                 println!("\nThank you for playing!");
                 break;
             }
+            GameState::Combat | GameState::Resting => todo!()
         }
     }
 
