@@ -13,6 +13,7 @@ struct Enemy {
     name: String,
     hp: i32,
     damage: i32,
+    exp: i32,
 }
 
 pub fn start_battle(player: &mut Player) -> bool {
@@ -20,6 +21,7 @@ pub fn start_battle(player: &mut Player) -> bool {
         name: String::from("Cave Goblin"),
         hp: 30,
         damage: 8,
+        exp: 5,
     };
 
     println!("\n\x1b[31mA wild {} rushes out from the shadows!\x1b[0m", goblin.name);
@@ -56,8 +58,9 @@ pub fn start_battle(player: &mut Player) -> bool {
 
         }
     }
-    
+
     println!("\n\x1b[32mVictory! You have vanquished the {}!\x1b[0m", goblin.name);
+    player.add_experience(goblin.exp);
     return true
 }
 
