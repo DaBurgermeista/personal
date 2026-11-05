@@ -56,7 +56,7 @@ pub fn start_battle(player: &mut Player) -> bool {
 fn print_combat_status(player: &Player, enemy: &Enemy) {
     println!("\n-------------------------------");
     println!("{}: \x1b[32m{}/{} HP\x1b[0m", player.name, player.health, player.max_health);
-    println!("{}: \x1b[31m{} HP\x1b[0m", enemy.name, enemy.health);
+    println!("{}: \x1b[31m{}/{} HP\x1b[0m", enemy.name, enemy.health, enemy.max_health);
     println!("-------------------------------");
     println!("[1] Attack");
     println!("[2] Rest / Catch Breath");
