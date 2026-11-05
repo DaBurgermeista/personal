@@ -22,7 +22,7 @@ pub fn start_battle(player: &mut Player) -> bool {
 
         match action {
             CombatAction::Attack => {
-                let player_damage = 10;
+                let player_damage = player.get_attack_power();
                 enemy.health -= player_damage;
                 println!("\nYou slice the {} for \x1b[36m{} damage\x1b[0m!", enemy.name, player_damage);
             }
