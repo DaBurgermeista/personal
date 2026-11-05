@@ -50,7 +50,7 @@ fn main(){
 }
 
 fn run_main_menu() -> GameState {
-    player.print_status();
+    player::print_status();
     println!("[1] Go Exploring");
     println!("[2] Quit Game");
 
