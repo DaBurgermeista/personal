@@ -1,6 +1,5 @@
-// Placeholder Rust file
-
 use std::io::{self, Write};
+use std:time::{SystemTime, UNIX_EPOCH};
 
 struct Player {
     name: String,
@@ -113,6 +112,45 @@ fn main(){
                 }
             }
             "2" => {
+                let seed = SystemTime::now()
+                    .duration_since(UNIX_EPOCH)
+                    .unwrap()
+                    .as_millis() as u32;
+
+                let roll = seed % 100;
+
+                if roll < 40 {
+                    //40% Chance
+                    println!("You found a safe resting spot in the cave.");
+                    player.health = (player.health + 10).min(player.max_health);
+                } else if roll < 80 {
+                    //40% Chance
+                    let damage = (seed % 6) + 5;
+                    let exp_gained = 3;
+
+                    println!("\nA wild Goblin attacks!");
+
+                    if player.take_damage(damage as i32) {
+                        println!("You strike back and defeat the goblin!");
+                        player.add_experience(exp_gained);
+                    } else {
+                        break;
+                    }
+                } else {
+                    //20% Chance
+                    let damage = (seed % 11) + 15;
+                    let exp_gained = 8;
+
+                    println!("\nOh no! A Cave Dragon emerges!");
+
+                    if player.take_damage(damage as i32) {
+                        println!("Against all odds, you defeat the Cave Dragon!");
+                        player.add_experience(exp_gained);
+                    } else {
+                        break;
+                    }
+                }
+
                 println!("\nA bat bites you in the dark!");
                 let is_alive = player.take_damage(10);
                 
