@@ -107,7 +107,6 @@ fn main(){
             "1" => {
                 if player.level >= 5 {
                     println!("\nYou can't learn anymore at this time!");
-                    break;
                 } else {
                     println!("\nYou practice your sword swings!");
                     player.add_experience(5);
