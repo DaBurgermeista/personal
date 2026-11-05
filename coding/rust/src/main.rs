@@ -24,7 +24,7 @@ fn get_user_input(prompt: &str) -> String {
 fn main(){
 
     // Create the player using constructor
-    let mut player = Player::new(get_user_input("What is your name adventurer?: "));
+    let mut player = Player::new(get_user_input("What is your name adventurer?: ").to_string());
     
     player.print_status();
     loop {
