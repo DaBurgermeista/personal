@@ -151,12 +151,6 @@ fn main(){
                     }
                 }
 
-                println!("\nA bat bites you in the dark!");
-                let is_alive = player.take_damage(10);
-                
-                if !is_alive {
-                    break;
-                }
             }
             "3" => {
                 player.print_status();
