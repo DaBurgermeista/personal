@@ -38,7 +38,7 @@ pub fn start_battle(player: &mut Player) {
             CombatAction::Rest => {
                 let heal_amount = 15;
                 player.health += (player.health + heal_amount).min(player.max_health);
-                println!("\nYou take a defensive stance and catch your breath, recovering \x1b[32m{} HP\x1b[0m.");
+                println!("\nYou take a defensive stance and catch your breath, recovering \x1b[32m{} HP\x1b[0m.", heal_amount);
             }
             CombatAction::Flee => {
                 println!("\nYou manage to scramble away back to safety!");
