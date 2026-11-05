@@ -1,5 +1,4 @@
 use std::io::{self, Write};
-use std::time::{SystemTime, UNIX_EPOCH};
 
 mod player;
 use player::Player;
