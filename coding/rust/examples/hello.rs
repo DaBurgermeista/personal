@@ -55,4 +55,6 @@ fn main(){
     player.print_status();
 
     player.take_damage(5);
+
+    player.print_status();
 }
