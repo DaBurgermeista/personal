@@ -26,7 +26,7 @@ fn main(){
             }
             GameState::Exploring => {
                 println!("\n\x1b[32m[Exploring] You step into the dark woods...\x1b[0m");
-                state = GameState::MainMenu;
+                state = GameState::Combat;
             }
             GameState::Exit => {
                 println!("\nThank you for playing!");
