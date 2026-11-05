@@ -43,7 +43,7 @@ fn main(){
     let trimmed_input = user_input.trim();
 
     // Create the player using constructor
-    let player = Player::new(trimmed_input);
+    let player = Player::new(trimmed_input.to_string());
     
     // Call the status method
     player.print_status();
