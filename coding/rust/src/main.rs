@@ -18,13 +18,13 @@ fn get_user_input(prompt: &str) -> String {
     let mut input = String::new();
     io::stdin().read_line(&mut input).expect("Failed to read line.");
 
-    input.trim()
+    input.trim().to_string()
 }
 
 fn main(){
 
     // Create the player using constructor
-    let mut player = Player::new(get_user_input("What is your name adventurer?: ").to_string());
+    let mut player = Player::new(get_user_input("What is your name adventurer?: "));
     
     player.print_status();
     loop {
