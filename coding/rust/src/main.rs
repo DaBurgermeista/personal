@@ -6,8 +6,6 @@ mod enemy;
 mod player;
 use player::Player;
 
-mod combat;
-
 enum GameState {
     MainMenu,
     Exploring,
