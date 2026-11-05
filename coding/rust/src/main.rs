@@ -91,31 +91,37 @@ fn main(){
     println!("What would you like to do?");
     println!("[1] Train (Gain EXP)");
     println!("[2] Venture into the Cave (Take Damage)");
-    println!("[3] Do nothing");
-    println!("Choose an option (1-3): ");
+    println!("[3] See Player Status");
+    println!("[4] Quit");
+    println!("Choose an option (1-4): ");
     io::stdout().flush().expect("Failed to flush stdout");
 
     let mut choice = String::new();
     io::stdin().read_line(&mut choice).expect("Failed to read line");
 
-    match choice.trim() {
-        "1" => {
-            println!("\nYou practice your sword swings!");
-            player.add_experience(5);
-        }
-        "2" => {
-            println!("\nA bat bites you in the dark!");
-            player.take_damage(10);
-        }
-        "3" | "nothing" => {
-            println!("\nYou decide to take a nap.")
-        }
-        _   => {
-            println!("\nInvalid choice! You stand there, looking confused.")
+    loop {
+        match choice.trim() {
+            "1" => {
+                println!("\nYou practice your sword swings!");
+                player.add_experience(5);
+            }
+            "2" => {
+                println!("\nA bat bites you in the dark!");
+                player.take_damage(10);
+            }
+            "3" => {
+                player.print_status();
+            }
+            "4" | "q" | "quit" => {
+                println!("\nFarewell, {}! Thanks for playing", player.name);
+                break;
+            }
+            _   => {
+                println!("\nInvalid choice! You stand there, looking confused.");
+            }
         }
     }
 
-    // Print final status to see the results of action
-    player.print_status()
+    println!("Game closed successfully.");
     
 }
