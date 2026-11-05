@@ -31,10 +31,16 @@ impl Player {
         );
     }
 
-    // Taking damage
+    // Taking damage with a death check
     fn take_damage(&mut self, amount: i32) {
         self.health -= amount;
         println!("{} took {} damage!", self.name, amount);
+
+        if self.health <= 0 {
+            self.health = 0;
+            println!("💀 Oh no! {} has fallen in battle...", self.name);
+            println!("--- 🪦 GAME OVER 🪦 ---");
+        }
     }
 
     // Adding experience and handling level ups
@@ -84,5 +90,6 @@ fn main(){
     player.take_damage(5);
     player.add_experience(14);
     player.print_status();
+    player.take_damage(40);
 
 }
