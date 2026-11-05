@@ -1,3 +1,4 @@
+// src/main.rs
 use std::io::{self, Write};
 
 mod player;
