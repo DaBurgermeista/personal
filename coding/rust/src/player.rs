@@ -97,6 +97,7 @@ impl Player {
 
             // Level up
             self.level += 1;
+            self.strength += 3;
 
             // Increase Max HP as a level bonus
             self.max_health += 10;
