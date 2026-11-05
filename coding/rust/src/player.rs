@@ -24,7 +24,7 @@ impl Player {
     // A method to show player status
     pub fn print_status(&self) {
         println!(
-            "\n--- Player Status ---\nName:   {}\nLVL:    {}(XP: {})\nHP: {}/{}\n",
+            "\n--- Player Status ---\nName:   {}\nLVL:    {}(XP: {})\nHP: \x1b[31m{}/{}\x1b[0m\n",
             self.name, self.level, self.experience, self.health, self.max_health
         );
     }
