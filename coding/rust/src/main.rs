@@ -1,6 +1,8 @@
 // src/main.rs
 use std::io::{self, Write};
 
+mod combat;
+mod enemy;
 mod player;
 use player::Player;
 
