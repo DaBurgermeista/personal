@@ -114,5 +114,8 @@ fn main(){
             println!("\nInvalid choice! You stand there, looking confused.")
         }
     }
+
+    // Print final status to see the results of action
+    player.print_status()
     
 }
