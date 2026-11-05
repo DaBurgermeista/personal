@@ -7,6 +7,7 @@ struct Player {
     health: i32,
     max_health: i32,
     level: u32,
+    experience: i32,
 }
 
 // Implement methods for the Player struct
@@ -18,14 +19,15 @@ impl Player {
             health: 35,
             max_health: 35,
             level: 1,
+            experience: 0,
         }
     }
 
     // A method to show player status
     fn print_status(&self) {
         println!(
-            "\n--- ⚔️ Player Status ⚔️ ---\nName:   {}\nLVL:    {}\nHP: {}/{}",
-            self.name, self.level, self.health, self.max_health
+            "\n--- ⚔️ Player Status ⚔️ ---\nName:   {}\nLVL:    {}(XP: {})\nHP: {}/{}",
+            self.name, self.level, self.experience, self.health, self.max_health
         );
     }
 
@@ -33,6 +35,12 @@ impl Player {
     fn take_damage(&mut self, amount: i32) {
         self.health -= amount;
         println!("{} took {} damage!", self.name, amount);
+    }
+
+    // Adding experience
+    fn add_experience(&mut self, amount: i32) {
+        self.experience += amount;
+        println!("--- ✨ Gained {} EXP! ✨ ---", amount);
     }
 }
 
@@ -53,8 +61,7 @@ fn main(){
     
     // Call the status method
     player.print_status();
-
-    player.take_damage(5);
-
+    player.add_experience(4);
     player.print_status();
+
 }
