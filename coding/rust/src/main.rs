@@ -3,6 +3,8 @@ use std::io::{self, Write};
 mod player;
 use player::Player;
 
+mod combat;
+
 enum GameState {
     MainMenu,
     Exploring,
@@ -30,7 +32,10 @@ fn main(){
                 println!("\nThank you for playing!");
                 break;
             }
-            GameState::Combat | GameState::Resting => todo!()
+            GameState::Combat => {
+                start_battle(player);
+            } 
+            GameState::Resting => todo!()
         }
     }
 
