@@ -2,23 +2,29 @@ use std::io::{self, Write};
 use std::time::{SystemTime, UNIX_EPOCH};
 
 mod player;
-
 use player::Player;
+
+enum GameState {
+    MainMenu,
+    Exploring,
+    Combat,
+    Resting,
+}
+
+fn get_user_input(prompt: &str) -> String {
+    print!("{}", prompt);
+    io::stdout().flush().expect("Failed to flush stdout");
+
+    let mut input = String::new();
+    io::stdin().read_line(&mut input).expect("Failed to read line.");
+
+    input.trim()
+}
 
 fn main(){
 
-    print!("What is your name adventurer?: ");
-    io::stdout().flush().expect("Failed to flush stdout");
-
-    let mut user_input = String::new();
-    io::stdin()
-        .read_line(&mut user_input)
-        .expect("Failed to read line");
-
-    let trimmed_input = user_input.trim().to_string();
-
     // Create the player using constructor
-    let mut player = Player::new(trimmed_input);
+    let mut player = Player::new(get_user_input("What is your name adventurer?: "));
     
     player.print_status();
     loop {
