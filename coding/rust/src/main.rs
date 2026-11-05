@@ -16,7 +16,7 @@ fn main(){
     let trimmed_input = user_input.trim().to_string();
 
     // Create the player using constructor
-    let mut player = Player::new(trimmed_input);
+    let mut player = player::new(trimmed_input);
     
     player.print_status();
     loop {
