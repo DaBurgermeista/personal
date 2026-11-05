@@ -40,7 +40,7 @@ impl Player {
     // Adding experience
     fn add_experience(&mut self, amount: i32) {
         self.experience += amount;
-        println!("--- ✨ Gained {} EXP! ✨ ---", amount);
+        println!("\n--- ✨  Gained {} EXP! ✨  ---", amount);
     }
 }
 
@@ -61,6 +61,7 @@ fn main(){
     
     // Call the status method
     player.print_status();
+    player.take_damage(5);
     player.add_experience(4);
     player.print_status();
 
