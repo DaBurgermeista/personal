@@ -26,7 +26,7 @@ impl Player {
     // A method to show player status
     fn print_status(&self) {
         println!(
-            "\n--- ⚔️ Player Status ⚔️ ---\nName:   {}\nLVL:    {}(XP: {})\nHP: {}/{}\n",
+            "\n--- Player Status ---\nName:   {}\nLVL:    {}(XP: {})\nHP: {}/{}\n",
             self.name, self.level, self.experience, self.health, self.max_health
         );
     }
@@ -38,15 +38,15 @@ impl Player {
 
         if self.health <= 0 {
             self.health = 0;
-            println!("💀 Oh no! {} has fallen in battle...", self.name);
-            println!("--- 🪦 GAME OVER 🪦 ---");
+            println!("Oh no! {} has fallen in battle...", self.name);
+            println!("--- GAME OVER ---");
         }
     }
 
     // Adding experience and handling level ups
     fn add_experience(&mut self, amount: i32) {
         self.experience += amount;
-        println!("\n--- ✨  Gained {} EXP! ✨  ---", amount);
+        println!("\n--- Gained {} EXP! ---", amount);
 
         // Define how much EXP is needed level up
         let xp_to_level = 10;
@@ -64,7 +64,7 @@ impl Player {
             // Fully heal the player on level up
             self.health = self.max_health;
 
-            println!("\n🎉 LEVEL UP! You are now Level {}", self.level);
+            println!("\n LEVEL UP! You are now Level {}", self.level);
             println!("Max HP increased! Current HP fully restored to {}.", self.max_health);
         }
     }
