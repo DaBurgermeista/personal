@@ -37,10 +37,30 @@ impl Player {
         println!("{} took {} damage!", self.name, amount);
     }
 
-    // Adding experience
+    // Adding experience and handling level ups
     fn add_experience(&mut self, amount: i32) {
         self.experience += amount;
         println!("\n--- ✨  Gained {} EXP! ✨  ---", amount);
+
+        // Define how much EXP is needed level up
+        let xp_to_level = 10;
+
+        if self.experience >= xp_to_level {
+            // Deduct EXP used for the level up
+            self.experience -= xp_to_level;
+
+            // Level up
+            player.level += 1;
+
+            // Increase Max HP as a level bonus
+            self.max_health += 10;
+
+            // Fully heal the player on level up
+            self.health = self.max_health;
+
+            println!("\n🎉 LEVEL UP! You are now Level {}", self.level);
+            println!("Max HP increased! Current HP fully restored to {}.", player.max_health);
+        }
     }
 }
 
@@ -62,7 +82,7 @@ fn main(){
     // Call the status method
     player.print_status();
     player.take_damage(5);
-    player.add_experience(4);
+    player.add_experience(14);
     player.print_status();
 
 }
