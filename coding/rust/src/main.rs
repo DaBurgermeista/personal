@@ -1,5 +1,5 @@
 use std::io::{self, Write};
-use std:time::{SystemTime, UNIX_EPOCH};
+use std::time::{SystemTime, UNIX_EPOCH};
 
 struct Player {
     name: String,
