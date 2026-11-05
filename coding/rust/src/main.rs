@@ -3,6 +3,8 @@ use std::time::{SystemTime, UNIX_EPOCH};
 
 mod player;
 
+use player::Player;
+
 fn main(){
 
     print!("What is your name adventurer?: ");
@@ -16,7 +18,7 @@ fn main(){
     let trimmed_input = user_input.trim().to_string();
 
     // Create the player using constructor
-    let mut player = player.new(trimmed_input);
+    let mut player = Player::new(trimmed_input);
     
     player.print_status();
     loop {
