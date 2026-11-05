@@ -36,7 +36,8 @@ fn main(){
                 if combat::start_battle(&mut player) {
                     state = GameState::MainMenu;
                 } else {
-                    GameState::Exitl
+                    println!("You died...");
+                    GameState::Exit;
                 }
                 
             } 
