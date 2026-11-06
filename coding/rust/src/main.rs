@@ -51,8 +51,18 @@ fn main(){
                 state = GameState::Combat;
             }
             GameState::Exit => {
-                println!("\nThank you for playing!");
-                break;
+                let ans = Confirm::new("Are you sure you want to quit?")
+                    .with_default(false).prompt();
+
+                match ans {
+                    Ok(true) => {
+                        println!("\nThank you for playing!");
+                        break;
+                    },
+                    Ok(false) => state = GameState::MainMenu,
+                    Err(_) => state = GameState::MainMenu,
+                }
+                
             }
             GameState::Combat => {
                 if combat::start_battle(&mut player) {
