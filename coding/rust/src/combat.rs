@@ -56,6 +56,7 @@ pub fn start_battle(player: &mut Player) -> bool {
     println!("\n\x1b[32mVictory! You have vanquished the {}!\x1b[0m", enemy.name);
     player.add_experience(enemy.exp);
     let gold_gain = rng.gen_range(0..=(enemy.level * 10));
+    println!("{PALADIN_GOLD}{} gold found!{PALADIN_GOLD:#}", gold_gain);
     return true
 }
 
