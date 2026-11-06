@@ -28,7 +28,7 @@ impl Player {
             inventory: vec![
                 Item::WeaponItem(Weapon::IronSword),
                 Item::ConsumableItem(Consumable::HealthPotion),
-                Item::ConsumableItem(Consumable::ElixerOfStrength),
+                Item::ConsumableItem(Consumable::ElixirOfStrength),
             ],
         }
     }
@@ -78,7 +78,7 @@ impl Player {
                                     potion.name(), heal_amount, self.health, self.max_health
                                 );
                             }
-                            Consumable::ElixerOfStrength => {
+                            Consumable::ElixirOfStrength => {
                                 self.strength += 2;
                                 println!("\nYou drink the {}! Your Strength has permenantly increased to {}!",
                                     potion.name(), self.strength
