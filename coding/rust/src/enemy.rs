@@ -1,6 +1,6 @@
 // src/enemy.rs
 use std::time::{SystemTime, UNIX_EPOCH};
-use crate::items::Weapon;
+// use crate::items::Weapon;
 
 pub struct Enemy {
     pub name: String,
