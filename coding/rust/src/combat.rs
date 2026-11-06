@@ -73,13 +73,15 @@ fn get_combat_action() -> CombatAction {
         "Flee",
     ];
 
-    let ans = Select::new("What would you like to do?", options).prompt();
+    loop {
+        let ans = Select::new("What would you like to do?", options).prompt();
 
-    match ans {
-        Ok("Attack") => return CombatAction::Attack,
-        Ok("Rest") => return CombatAction::Rest,
-        Ok("Flee") => return CombatAction::Flee,
-        _ => todo!(),
+        match ans {
+            Ok("Attack") => return CombatAction::Attack,
+            Ok("Rest")   => return CombatAction::Rest,
+            Ok("Flee")   => return CombatAction::Flee,
+            _            => println!("{DAMAGE_RED}You must choose an action to continue.{DAMAGE_RED:#}"),
+        }
     }
     
 }
