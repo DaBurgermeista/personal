@@ -40,6 +40,8 @@ fn main(){
 
     let class_options = vec![
         "Warrior",
+        "Rogue",
+        "Mage",
     ];
     loop {
         let ans = Select::new("What is your class?", class_options.clone()).prompt();
