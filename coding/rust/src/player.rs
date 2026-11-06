@@ -40,7 +40,7 @@ impl Consumable {
     pub fn name(&self) -> &str {
         match self {
             Consumable::HealthPotion => "Minor Health Potion",
-            Consumable::ElixerOfStrength = "Elixer of Strength",
+            Consumable::ElixerOfStrength => "Elixer of Strength",
         }
     }
 }
@@ -110,7 +110,7 @@ impl Player {
             println!("[{}] {}", index + 1, item.name());
         }
         println!("[0] Back to menu");
-        let choice = crate::get_user_input("Choose an item to equip: ");
+        let choice = crate::get_user_input("Choose an item to use/equip: ");
 
         if let Ok(num) = choice.trim().parse::<usize>() {
             if num == 0 {
@@ -118,7 +118,7 @@ impl Player {
             }
             if num <= self.inventory.len() {
                 let selected_index = num - 1;
-                let chosen_item = self.inventory[selected_index]
+                let chosen_item = self.inventory[selected_index];
 
                 match chosen_item {
                     Item::WeaponItem(new_weapon) => {
