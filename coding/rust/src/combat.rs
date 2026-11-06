@@ -74,7 +74,7 @@ fn get_combat_action() -> CombatAction {
     ];
 
     loop {
-        let ans = Select::new("What would you like to do?", options).prompt();
+        let ans = Select::new("What would you like to do?", options.clone()).prompt();
 
         match ans {
             Ok("Attack") => return CombatAction::Attack,
