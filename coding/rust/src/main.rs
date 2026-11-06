@@ -74,7 +74,7 @@ fn run_main_menu() -> GameState {
 }
 
 // User input helper
-fn pub get_user_input(prompt: &str) -> String {
+pub fn get_user_input(prompt: &str) -> String {
     print!("{}", prompt);
     io::stdout().flush().expect("Failed to flush stdout");
 
