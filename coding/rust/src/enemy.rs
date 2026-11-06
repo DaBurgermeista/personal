@@ -8,31 +8,33 @@ pub struct Enemy {
     pub max_health: i32,
     pub damage: i32,
     pub exp: i32,
+    pub level: i32,
 }
 
 impl Enemy {
     // Base constructor
-    pub fn new(name: &str, health: i32,  damage: i32, exp: i32) -> Self {
+    pub fn new(name: &str, health: i32,  damage: i32, exp: i32, level: i32) -> Self {
         Enemy {
             name: name.to_string(),
             health,
             max_health: health,
             damage,
             exp,
+            level,
         }
     }
 
     // --- Preset Enemy Types ---
     pub fn enemy() -> Self {
-        Self::new("Cave Goblin", 30, 8, 5)
+        Self::new("Cave Goblin", 30, 8, 5, 3)
     }
 
     pub fn skeleton() -> Self {
-        Self::new("Rattling Skeleton", 45, 12, 8)
+        Self::new("Rattling Skeleton", 45, 12, 8, 6)
     }
 
     pub fn dragon() -> Self {
-        Self::new("Shadow Dragon", 100, 20, 25)
+        Self::new("Shadow Dragon", 100, 20, 25, 10)
     }
 
     // --- Random Spanwer ---
@@ -47,9 +49,9 @@ impl Enemy {
         if roll < 50 {
             Self::enemy()      // 50% Chance
         } else if roll < 85 {
-        Self::skeleton()        // 35% Chance
+            Self::skeleton()   // 35% Chance
         } else {
-            Self::dragon()      // 15% Chance
+            Self::dragon()     // 15% Chance
         }
     }
 }

@@ -5,6 +5,7 @@ use crate::player::Player;
 use crate::{SYSTEM_GRAY, DAMAGE_RED, HEAL_GREEN, PALADIN_GOLD};
 use inquire::{Select, Text};
 use anstyle::{AnsiColor, Color, Style};
+use rand::Rng
 
 
 pub enum CombatAction {
@@ -15,6 +16,7 @@ pub enum CombatAction {
 
 pub fn start_battle(player: &mut Player) -> bool {
     let mut enemy = Enemy::spawn_random();
+    let mut rng = rand::thread_rng();
 
     println!("\n{DAMAGE_RED}A wild {PALADIN_GOLD}{}{PALADIN_GOLD:#} {DAMAGE_RED}rushes out from the shadows!\x1b[0m", enemy.name);
 
@@ -53,6 +55,7 @@ pub fn start_battle(player: &mut Player) -> bool {
 
     println!("\n\x1b[32mVictory! You have vanquished the {}!\x1b[0m", enemy.name);
     player.add_experience(enemy.exp);
+    let gold_gain = rng.gen_range(0..=(enemy.level * 10));
     return true
 }
 
