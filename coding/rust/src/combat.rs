@@ -79,7 +79,6 @@ fn get_combat_action() -> CombatAction {
         Ok("Attack") => return CombatAction::Attack,
         Ok("Rest") => return CombatAction::Rest,
         Ok("Flee") => return CombatAction::Flee,
-        _ => println!("{SYSTEM_GRAY}Invalid action. Try again.{SYSTEM_GRAY:#}"),
     }
     
 }
