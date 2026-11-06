@@ -53,7 +53,7 @@ impl Player {
             experience: 0,
             strength: 10,
             weapon: Weapon::RustyDagger,
-            inventory: vec![Weapon::RustyDagger],
+            inventory: vec![Weapon::IronSword],
         }
     }
 
