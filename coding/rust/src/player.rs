@@ -87,7 +87,7 @@ impl Player {
 
                 let old_equipped = self.weapon;
 
-                self.weapon = Self.inventory[selected_index];
+                self.weapon = self.inventory[selected_index];
 
                 self.inventory[selected_index] = old_equipped;
 
