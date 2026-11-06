@@ -40,7 +40,7 @@ fn main(){
     println!("Your journey begins in a dimly lit tavern...\n");
     
     loop {
-        println!("{SYSTEM_GRAY}[HP: {HEAL_GREEN}{}/{}{HEAL_GREEN:#}] | LVL: {}{SYSTEM_GRAY:#}", player.health, player.max_health, player.level);
+        println!("{SYSTEM_GRAY}[HP: {HEAL_GREEN}{}/{}{HEAL_GREEN:#}{SYSTEM_GRAY}] | LVL: {}{SYSTEM_GRAY:#}", player.health, player.max_health, player.level);
         match state {
             GameState::MainMenu => {
                 player.print_status();
