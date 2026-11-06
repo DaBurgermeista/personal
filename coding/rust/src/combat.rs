@@ -5,7 +5,7 @@ use crate::player::Player;
 use crate::{SYSTEM_GRAY, DAMAGE_RED, HEAL_GREEN, PALADIN_GOLD};
 use inquire::{Select, Text};
 use anstyle::{AnsiColor, Color, Style};
-use rand::Rng
+use rand::Rng;
 
 
 pub enum CombatAction {
