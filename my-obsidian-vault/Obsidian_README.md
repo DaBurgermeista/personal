@@ -1,1 +1,0 @@
-# Initial Obsidian Vault README
