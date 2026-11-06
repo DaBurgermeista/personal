@@ -42,9 +42,9 @@ pub fn start_battle(player: &mut Player) -> bool {
 
         if enemy.health > 0 {
             if player.take_damage(enemy.damage) {
-                println!("The {} retaliates, hitting your for \x1b[31m{} damage\x1b[0m!", enemy.name, enemy.damage);
+                println!("The {} retaliates, hitting your for {DAMAGE_RED}{} damage{DAMAGE_RED:#}!", enemy.name, enemy.damage);
             } else {
-                println!("\n\x1b[31mYou have been defeated in battle... Game Over.\x1b[0m");
+                println!("\n{DAMAGE_RED}You have been defeated in battle... Game Over.{DAMAGE_RED:#}");
                 return false
             }
 
@@ -58,8 +58,8 @@ pub fn start_battle(player: &mut Player) -> bool {
 
 fn print_combat_status(player: &Player, enemy: &Enemy) {
     println!("\n-------------------------------");
-    println!("{}: \x1b[32m{}/{} HP\x1b[0m", player.name, player.health, player.max_health);
-    println!("{}: \x1b[31m{}/{} HP\x1b[0m", enemy.name, enemy.health, enemy.max_health);
+    println!("{}: {HEAL_GREEN}{}/{} HP{HEAL_GREEN:#}", player.name, player.health, player.max_health);
+    println!("{}: {DAMAGE_RED}{}/{} HP{DAMAGE_RED:#}", enemy.name, enemy.health, enemy.max_health);
     println!("-------------------------------");
     println!("[1] Attack");
     println!("[2] Rest / Catch Breath");
