@@ -4,3 +4,7 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
+inquire = "0.7"
+anstream = "0.6"
+anstyle = "1.0"
+rand = "0.8"
