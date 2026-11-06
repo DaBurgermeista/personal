@@ -35,8 +35,12 @@ fn main(){
 
     let mut player = Player::new(player_name);
     let mut state = GameState::MainMenu;
+
+    println!("\nWelcome, {PALADIN_GOLD}{}{PALADIN_GOLD:#}!", player.name);
+    println!("Your journey begins in a dimly lit tavern...\n");
     
     loop {
+        println!("{SYSTEM_GRAY}[HP: {}/{}]{SYSTEM_GRAY:#}", player.health, player.max_health);
         match state {
             GameState::MainMenu => {
                 player.print_status();
