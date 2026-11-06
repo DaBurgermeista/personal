@@ -42,9 +42,12 @@ fn main(){
         "Warrior",
     ];
 
-    let class_selection = Select::new("What is your class?", class_options).prompt();
+    let ans: Result<&str, InquireError> = Select::new("What is your class?", class_options).prompt();
 
-    println!("Your journey begins in a dimly lit tavern {class_selection}...\n");
+    match ans {
+        Ok(choice) => println!("Your journey begins in a dimly lit tavern {}...\n", choice),
+        Err(_) => prinln!("There was an error, please try again."),
+    }
     
     loop {
         println!("{SYSTEM_GRAY}[HP: {HEAL_GREEN}{}/{}{HEAL_GREEN:#}{SYSTEM_GRAY}] | LVL: {}{SYSTEM_GRAY:#}", player.health, player.max_health, player.level);
