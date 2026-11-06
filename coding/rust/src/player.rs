@@ -30,6 +30,36 @@ impl Weapon {
     }
 }
 
+#[derive(Clone, Copy)]
+pub enum Consumable {
+    HealthPotion,
+    ElixerOfStrength,
+}
+
+impl Consumable {
+    pub fn name(&self) -> &str {
+        match self {
+            Consumable::HealthPotion => "Minor Health Potion",
+            Consumable::ElixerOfStrength = "Elixer of Strength",
+        }
+    }
+}
+
+#[derive(Clone, Copy)]
+pub enum Item {
+    WeaponItem(Weapon),
+    ConsumableItem(Consumable),
+}
+
+impl Item {
+    pub fn name(&self) -> &str {
+        match self {
+            Item::WeaponItem(w) => w.name(),
+            Item::ConsumableItem(c) => c.name(),
+        }
+    }
+}
+
 pub struct Player {
     pub name: String,
     pub health: i32,
@@ -53,7 +83,11 @@ impl Player {
             experience: 0,
             strength: 10,
             weapon: Weapon::RustyDagger,
-            inventory: vec![Weapon::IronSword],
+            inventory: vec![
+                Item::WeaponItem(Weapon::IronSword),
+                Item::ConsumableItem(Consumable::HealthPotion),
+                Item::ConsumableItem(Consumable::ElixerOfStrength),
+            ],
         }
     }
 
@@ -84,14 +118,36 @@ impl Player {
             }
             if num <= self.inventory.len() {
                 let selected_index = num - 1;
+                let chosen_item = self.inventory[selected_index]
 
-                let old_equipped = self.weapon;
+                match chosen_item {
+                    Item::WeaponItem(new_weapon) => {
+                        let old_equipped = self.weapon;
+                        self.weapon = new_weapon;
+                        self.inventory[selected_index] = Item::WeaponItem(old_equipped);
+                        println!("\nYou unequipped {} and equipped the \x1b[35m{}\x1b[0m", old_equipped.name(), self.weapon.name());
+                    }
+                    Item::ConsumableItem(potion) => {
+                        match potion {
+                            Consumable::HealthPotion => {
+                                let heal_amount = 20;
+                                self.health = (self.health + heal_amount).min(self.max_health);
+                                println!("\nYou drink the {} and recover \x1b[32m{} HP\x1b[0m ({}/{})", 
+                                    potion.name(), heal_amount, self.health, self.max_health
+                                );
+                            }
+                            Consumable::ElixerOfStrength => {
+                                self.strength += 2;
+                                println!("\nYou drink the {}! Your Strength has permenantly increased to {}!",
+                                    potion.name(), self.strength
+                                );
+                            }
+                        }
+                        self.inventory.remove(selected_index);
+                    }
+                }
 
-                self.weapon = self.inventory[selected_index];
-
-                self.inventory[selected_index] = old_equipped;
-
-                println!("\nYou unequipped {} and equipped the \x1b[35m{}\x1b[0m", old_equipped.name(), self.weapon.name())
+                
             }
         }
     }
