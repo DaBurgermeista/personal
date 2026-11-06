@@ -1,11 +1,20 @@
 // src/main.rs
 use std::io::{self, Write};
+use anstream::println;
+use anstyle::{AnsiColor, Color, Style};
+use inquire::{Select, Text};
+use rand::Rng;
 
 mod combat;
 mod enemy;
 mod items;
 mod player;
 use player::Player;
+
+const PALADIN_GOLD: Style = Style::new().fg_color(Some(Color::Ansi(AnsiColor::Yellow)));
+const DAMAGE_RED: Style = Style::new().fg_color(Some(Color::Ansi(AnsiColor::Red)));
+const HEAL_GREEN: Style = Style::new().fg_color(Some(Color::Ansi(AnsiColor::Green)));
+const SYSTEM_GRAY: Style = Style::new().fg_color(Some(Color::Ansi(AnsiColor::BrightBlack)));
 
 enum GameState {
     MainMenu,
@@ -16,9 +25,15 @@ enum GameState {
 }
 
 fn main(){
+    println!("{SYSTEM_GRAY}--- Starting Terminal RPG Engine ---{SYSTEM_GRAY:#}\n")
 
     // Create the player using constructor
-    let mut player = Player::new(get_user_input("What is your name adventurer?: "));
+    let player_name = Text::new("What is your hero's name?")
+        .with_default("Thorin")
+        .prompt()
+        .unwrap_or_else(|_| "Hero".to_string());
+
+    let mut player = Player::new(player_name);
     let mut state = GameState::MainMenu;
     
     loop {
