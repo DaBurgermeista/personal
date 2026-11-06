@@ -76,11 +76,7 @@ impl Player {
             println!("[{}] {}", index + 1, item.name());
         }
         println!("[0] Back to menu");
-        print!("Choose an item to equip: ");
-        let _ = std::io::stdout().flush();
-
-        let mut choice = String::new();
-        std::io::stdin().read_line(&mut choice).expect("Failed to read line");
+        let choice = crate::get_user_input("Choose an item to equip: ");
 
         if let Ok(num) = choice.trim().parse::<usize>() {
             if num == 0 {
