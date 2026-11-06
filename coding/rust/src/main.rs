@@ -75,19 +75,20 @@ fn main(){
 }
 
 fn run_main_menu() -> GameState {
-    println!("\n--- Actions ---");
-    println!("[1] Go Exploring");
-    println!("[2] Open Inventory");
-    println!("[3] Quit Game");
+    let options = vec![
+        "Go Exploring",
+        "Open Inventory",
+        "Quit Game",
+    ];
 
-    let choice = get_user_input("\nSelect an option: ");
+    let ans = Select::new("What would you like to do?", options).prompt();
 
-    match choice.as_str() {
-        "1" | "start" | "start new game" => GameState::Exploring,
-        "2" | "i" | "open" => GameState::Inventory,
-        "3" | "quit" | "q" | "exit" => GameState::Exit,
+    match ans {
+        Ok("Go Exploring") => GameState::Exploring,
+        Ok("Open Inventory") => GameState::Inventory,
+        Ok("Quit Game") => GameState::Exit,
         _ => {
-            println!("\x1b[31mInvalid option. Please type 1 or 2.\x1b[0m");
+            println!("{SYSTEM_GRAY}Invalid option. Please type 1 or 2.{SYSTEM_GRAY:#}");
             GameState::MainMenu
         }
     }
