@@ -41,12 +41,16 @@ fn main(){
     let class_options = vec![
         "Warrior",
     ];
+    loop {
+        let ans = Select::new("What is your class?", class_options).prompt();
 
-    let ans = Select::new("What is your class?", class_options).prompt();
-
-    match ans {
-        Ok(choice) => println!("Your journey begins in a dimly lit tavern {}...\n", choice),
-        Err(_) => println!("There was an error, please try again."),
+        match ans {
+            Ok(choice) => {
+                println!("Your journey begins in a dimly lit tavern {}...\n", choice);
+                break;
+            },
+            Err(_) => println!("There was an error, please try again."),
+        }
     }
     
     loop {
