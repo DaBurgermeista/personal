@@ -42,7 +42,7 @@ fn main(){
         "Warrior",
     ];
     loop {
-        let ans = Select::new("What is your class?", class_options).prompt();
+        let ans = Select::new("What is your class?", class_options.clone()).prompt();
 
         match ans {
             Ok(choice) => {
