@@ -10,7 +10,7 @@ enum GameState {
     MainMenu,
     Exploring,
     Combat,
-    Resting,
+    Inventory,
     Exit,
 }
 
@@ -43,7 +43,10 @@ fn main(){
                 }
                 
             } 
-            GameState::Resting => todo!()
+            GameState::Inventory => {
+                player.show_inventory();
+                state = GameState::MainMenu;
+            }
         }
     }
 
@@ -54,13 +57,15 @@ fn main(){
 fn run_main_menu() -> GameState {
     println!("\n--- Actions ---");
     println!("[1] Go Exploring");
-    println!("[2] Quit Game");
+    println!("[2] Open Inventory");
+    println!("[3] Quit Game");
 
     let choice = get_user_input("\nSelect an option: ");
 
     match choice.as_str() {
         "1" | "start" | "start new game" => GameState::Exploring,
-        "2" | "quit" | "q" | "exit" => GameState::Exit,
+        "2" | "i" | "open" => GameState::Inventory,
+        "3" | "quit" | "q" | "exit" => GameState::Exit,
         _ => {
             println!("\x1b[31mInvalid option. Please type 1 or 2.\x1b[0m");
             GameState::MainMenu
