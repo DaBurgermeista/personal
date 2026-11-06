@@ -75,7 +75,7 @@ fn get_combat_action() -> CombatAction {
 
     let ans = Select::new("What would you like to do?", options).prompt();
 
-    match input.trim().to_lowercase().as_str() {
+    match ans {
         Ok("Attack") => return CombatAction::Attack,
         Ok("Rest") => return CombatAction::Rest,
         Ok("Flee") => return CombatAction::Flee,
