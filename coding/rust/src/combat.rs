@@ -2,7 +2,6 @@
 
 use crate::enemy::Enemy;
 use crate::player::Player;
-use std::io::{self, Write};
 
 pub enum CombatAction {
     Attack,
@@ -65,8 +64,7 @@ fn print_combat_status(player: &Player, enemy: &Enemy) {
 
 fn get_combat_action() -> CombatAction {
     loop {
-        let mut input = crate::get_user_input("Choose your action: ")
-        io::stdin().read_line(&mut input).expect("Failed to read");
+        let mut input = crate::get_user_input("Choose your action: ");
 
         match input.trim().to_lowercase().as_str() {
             "1" => return CombatAction::Attack,
