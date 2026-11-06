@@ -11,10 +11,10 @@ mod items;
 mod player;
 use player::Player;
 
-const PALADIN_GOLD: Style = Style::new().fg_color(Some(Color::Ansi(AnsiColor::Yellow)));
-const DAMAGE_RED: Style = Style::new().fg_color(Some(Color::Ansi(AnsiColor::Red)));
-const HEAL_GREEN: Style = Style::new().fg_color(Some(Color::Ansi(AnsiColor::Green)));
-const SYSTEM_GRAY: Style = Style::new().fg_color(Some(Color::Ansi(AnsiColor::BrightBlack)));
+pub const PALADIN_GOLD: Style = Style::new().fg_color(Some(Color::Ansi(AnsiColor::Yellow)));
+pub const DAMAGE_RED: Style = Style::new().fg_color(Some(Color::Ansi(AnsiColor::Red)));
+pub const HEAL_GREEN: Style = Style::new().fg_color(Some(Color::Ansi(AnsiColor::Green)));
+pub const SYSTEM_GRAY: Style = Style::new().fg_color(Some(Color::Ansi(AnsiColor::BrightBlack)));
 
 enum GameState {
     MainMenu,

@@ -2,6 +2,10 @@
 
 use crate::enemy::Enemy;
 use crate::player::Player;
+use crate::{SYSTEM_GRAY, DAMAGE_RED, HEAL_GREEN};
+use inquire::{Select, Text};
+use anstyle::{AnsiColor, Color, Style};
+
 
 pub enum CombatAction {
     Attack,
@@ -23,12 +27,12 @@ pub fn start_battle(player: &mut Player) -> bool {
             CombatAction::Attack => {
                 let player_damage = player.get_attack_power();
                 enemy.health -= player_damage;
-                println!("\nYou slice the {} for \x1b[36m{} damage\x1b[0m!", enemy.name, player_damage);
+                println!("\nYou slice the {} for {DAMAGE_RED}{} damage{DAMAGE_RED:#}!", enemy.name, player_damage);
             }
             CombatAction::Rest => {
                 let heal_amount = 15;
                 player.health = (player.health + heal_amount).min(player.max_health);
-                println!("\nYou take a defensive stance and catch your breath, recovering \x1b[32m{} HP\x1b[0m.", heal_amount);
+                println!("\nYou take a defensive stance and catch your breath, recovering {HEAL_GREEN}{} HP{HEAL_GREEN:#}.", heal_amount);
             }
             CombatAction::Flee => {
                 println!("\nYou manage to scramble away back to safety!");
@@ -63,14 +67,19 @@ fn print_combat_status(player: &Player, enemy: &Enemy) {
 }
 
 fn get_combat_action() -> CombatAction {
-    loop {
-        let mut input = crate::get_user_input("Choose your action: ");
+    let options = vec![
+        "Attack",
+        "Rest",
+        "Flee",
+    ];
 
-        match input.trim().to_lowercase().as_str() {
-            "1" => return CombatAction::Attack,
-            "2" => return CombatAction::Rest,
-            "3" => return CombatAction::Flee,
-            _ => println!("\x1b[31mInvalid action. Try again.\x1b[0m"),
-        }
+    let ans = Select::new("What would you like to do?", options).prompt();
+
+    match input.trim().to_lowercase().as_str() {
+        Ok("Attack") => return CombatAction::Attack,
+        Ok("Rest") => return CombatAction::Rest,
+        Ok("Flee") => return CombatAction::Flee,
+        _ => println!("{SYSTEM_GRAY}Invalid action. Try again.{SYSTEM_GRAY:#}"),
     }
+    
 }
