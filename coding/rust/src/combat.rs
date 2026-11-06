@@ -79,7 +79,7 @@ fn get_combat_action() -> CombatAction {
         Ok("Attack") => return CombatAction::Attack,
         Ok("Rest") => return CombatAction::Rest,
         Ok("Flee") => return CombatAction::Flee,
-        Err(_) => todo!(),
+        _ => todo!(),
     }
     
 }
