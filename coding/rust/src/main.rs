@@ -3,7 +3,7 @@ use std::io::{self, Write};
 use anstream::println;
 use anstyle::{AnsiColor, Color, Style};
 use inquire::{Select, Text, Confirm};
-use rand::Rng;
+// use rand::Rng;
 
 mod combat;
 mod enemy;
