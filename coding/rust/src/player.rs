@@ -68,7 +68,7 @@ pub struct Player {
     pub experience: i32,
     pub strength: i32,
     pub weapon: Weapon,
-    pub inventory: Vec<Weapon>,
+    pub inventory: Vec<Item>,
 }
 
 // Implement methods for the Player struct
@@ -82,7 +82,7 @@ impl Player {
             level: 1,
             experience: 0,
             strength: 10,
-            weapon: Weapon::RustyDagger,
+            weapon: Weapon::Fists,
             inventory: vec![
                 Item::WeaponItem(Weapon::IronSword),
                 Item::ConsumableItem(Consumable::HealthPotion),
