@@ -25,7 +25,7 @@ enum GameState {
 }
 
 fn main(){
-    println!("{SYSTEM_GRAY}--- Starting Terminal RPG Engine ---{SYSTEM_GRAY:#}\n")
+    println!("{SYSTEM_GRAY}--- Starting Terminal RPG Engine ---{SYSTEM_GRAY:#}\n");
 
     // Create the player using constructor
     let player_name = Text::new("What is your hero's name?")
