@@ -37,7 +37,14 @@ fn main(){
     let mut state = GameState::MainMenu;
 
     println!("\nWelcome, {PALADIN_GOLD}{}{PALADIN_GOLD:#}!", player.name);
-    println!("Your journey begins in a dimly lit tavern...\n");
+
+    let class_options = vec![
+        "Warrior",
+    ]
+
+    let class_selection = Select::new("What is your class?", class_options).prompt();
+
+    println!("Your journey begins in a dimly lit tavern {}...\n", class_selection);
     
     loop {
         println!("{SYSTEM_GRAY}[HP: {HEAL_GREEN}{}/{}{HEAL_GREEN:#}{SYSTEM_GRAY}] | LVL: {}{SYSTEM_GRAY:#}", player.health, player.max_health, player.level);
