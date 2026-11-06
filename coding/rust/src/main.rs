@@ -42,11 +42,11 @@ fn main(){
         "Warrior",
     ];
 
-    let ans: Result<&str, E> = Select::new("What is your class?", class_options).prompt();
+    let ans = Select::new("What is your class?", class_options).prompt();
 
     match ans {
         Ok(choice) => println!("Your journey begins in a dimly lit tavern {}...\n", choice),
-        Err(_) => prinln!("There was an error, please try again."),
+        Err(_) => println!("There was an error, please try again."),
     }
     
     loop {
