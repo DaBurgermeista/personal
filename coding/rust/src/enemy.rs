@@ -23,7 +23,7 @@ impl Enemy {
 
     // --- Preset Enemy Types ---
     pub fn enemy() -> Self {
-        Self::new("Cave enemy", 30, 8, 5)
+        Self::new("Cave Goblin", 30, 8, 5)
     }
 
     pub fn skeleton() -> Self {
