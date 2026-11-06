@@ -1,64 +1,6 @@
 // src/player.rs
 
-#[derive(Clone, Copy)]
-pub enum Weapon {
-    Fists,
-    RustyDagger,
-    IronSword,
-    Greatsword,
-}
-
-impl Weapon {
-    // Get the display name of the weapon
-    pub fn name(&self) -> &str {
-        match self {
-            Weapon::Fists => "Fists",
-            Weapon::RustyDagger => "Rusty Dagger",
-            Weapon::IronSword => "Iron Sword",
-            Weapon::Greatsword => "Steel Greatsword",
-        }
-    }
-
-    // Base damage values for weapons
-    pub fn base_damage(&self) -> i32 {
-        match self {
-            Weapon::Fists => 4,
-            Weapon::RustyDagger => 8,
-            Weapon::IronSword => 15,
-            Weapon::Greatsword => 28,
-        }
-    }
-}
-
-#[derive(Clone, Copy)]
-pub enum Consumable {
-    HealthPotion,
-    ElixerOfStrength,
-}
-
-impl Consumable {
-    pub fn name(&self) -> &str {
-        match self {
-            Consumable::HealthPotion => "Minor Health Potion",
-            Consumable::ElixerOfStrength => "Elixer of Strength",
-        }
-    }
-}
-
-#[derive(Clone, Copy)]
-pub enum Item {
-    WeaponItem(Weapon),
-    ConsumableItem(Consumable),
-}
-
-impl Item {
-    pub fn name(&self) -> &str {
-        match self {
-            Item::WeaponItem(w) => w.name(),
-            Item::ConsumableItem(c) => c.name(),
-        }
-    }
-}
+use crate::items::{Item, Weapon, Consumable};
 
 pub struct Player {
     pub name: String,

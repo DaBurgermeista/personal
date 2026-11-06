@@ -3,6 +3,7 @@ use std::io::{self, Write};
 
 mod combat;
 mod enemy;
+mod items;
 mod player;
 use player::Player;
 
