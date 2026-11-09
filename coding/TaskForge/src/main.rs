@@ -28,7 +28,7 @@ fn main() {
         }
         _ => {
             println!("Not a valid Unit type");
-            0.0
+            std::process::exit(1)
         }
     };
 
