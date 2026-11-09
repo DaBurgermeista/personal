@@ -15,7 +15,7 @@ fn main() {
 
     let name = &args[1];
     // Convert string to integer
-    let count: u32 = args[2].parse().expect("Count must be a number");
+    let count: i32 = args[2].parse().expect("Count must be a number");
 
     for _ in 0..count {
         println!("Hello, {}", name)
