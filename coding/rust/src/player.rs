@@ -48,8 +48,8 @@ impl Player {
         table.load_preset(comfy_table::presets::UTF8_ROUND_CORNERS);
 
         table.set_headers(vec![
-            Call::new("Stat").add_attribute(Attribute::Bold),
-            Call::new("Value").add_attribute(Attribute.Bold),
+            Cell::new("Stat").add_attribute(Attribute::Bold),
+            Cell::new("Value").add_attribute(Attribute.Bold),
         ]);
 
         table.add_row(vec![
