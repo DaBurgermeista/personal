@@ -1,9 +1,7 @@
-// src/main.rs
-
 use ratatui::{DefaultTerminal, Frame};
 
 fn main() -> color_eyre::Result<()> {
-    color_eyre::install();
+    color_eyre::install()?;
     ratatui::run(app)?;
     Ok(())
 }
@@ -18,5 +16,5 @@ fn app(terminal: &mut DefaultTerminal) -> std::io::Result<()> {
 }
 
 fn render(frame: &mut Frame) {
-    frame.render_widget("Hello, World!", frame.area());
+    frame.render_widget("hello world", frame.area());
 }
