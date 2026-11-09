@@ -15,22 +15,24 @@ fn main() {
 
     let temp: f64 = args[1].parse::<f64>().expect("Temp must be a number");
     // Convert string to integer
-    let mut unit = &args[2].to_string();
-    let mut conversion = 0.0;
+    let mut unit: &str = &args[2];
 
-    match unit.to_lowercase() {
+    let conversion = match unit.to_lowercase().to_string() {
         "f" => {
-            let conversion = (temp - 32.0) * (5.0 / 9.0);
             unit = "C";
+            (temp - 32.0) * (5.0 / 9.0)
         }
         "c" => {
-            let conversion = (temp * (9.0/5.0)) + 32.0;
             unit = "F";
+            (temp * (9.0/5.0)) + 32.0
         }
-        _ => println!("Not a valid Unit type"),
+        _ => {
+            println!("Not a valid Unit type");
+            0.0
+        }
     }
 
     
-    println!("{} {}", conversion, unit);
+    println!("Temperature: {:.2}°{}", conversion, unit);
 
 }
