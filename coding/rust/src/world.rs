@@ -2,7 +2,7 @@
 
 use anstream::println;
 use inquire::Select;
-use crate player::Player;
+use crate::player::Player;
 use crate::{PALADIN_GOLD, SYSTEM_GRAY, HEAL_GREEN, GameState};
 
 #[derive(Clone, Copy, PartialEq)]

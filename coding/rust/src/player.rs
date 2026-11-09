@@ -24,7 +24,7 @@ impl Player {
             max_health: 35,
             level: 1,
             experience: 0,
-            golf: 0,
+            gold: 0,
             strength: 10,
             weapon: Weapon::Fists,
             inventory: vec![
