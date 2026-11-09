@@ -17,7 +17,7 @@ fn main() {
     // Convert string to integer
     let count = &args[2];
 
-    let conversion = (temp - 32) * (5 / 9);
+    let conversion = (temp - 32.0) * (5 / 9);
     println!("{} C", conversion);
 
 }
