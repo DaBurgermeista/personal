@@ -17,7 +17,7 @@ fn main() {
     // Convert string to integer
     let mut unit: &str = &args[2];
 
-    let conversion = match unit.to_lowercase().to_string() {
+    let conversion = match unit.to_lowercase().to_str() {
         "f" => {
             unit = "C";
             (temp - 32.0) * (5.0 / 9.0)
