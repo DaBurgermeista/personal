@@ -1,5 +1,6 @@
 // src/player.rs
 
+use inquire::Select;
 use crate::items::{Item, Weapon, Consumable};
 
 pub struct Player {
@@ -45,53 +46,83 @@ impl Player {
 
     pub fn show_inventory(&mut self) {
         if self.inventory.is_empty() {
-            println!("\nYour inventory bag is empty.");
+            println!("\n🎒 Your inventory bag is empty.");
             return;
         }
 
-        println!("\n--- Inventory Bag ---");
-        for (index, item) in self.inventory.iter().enumerate() {
-            println!("[{}] {}", index + 1, item.name());
-        }
-        println!("[0] Back to menu");
-        let choice = crate::get_user_input("Choose an item to use/equip: ");
+        // 1. Build the menu options list dynamically from your actual items
+        let mut options: Vec<String> = self
+            .inventory
+            .iter()
+            .map(|item| item.name().to_string())
+            .collect();
 
-        if let Ok(num) = choice.trim().parse::<usize>() {
-            if num == 0 {
-                return;
-            }
-            if num <= self.inventory.len() {
-                let selected_index = num - 1;
+        // 2. Add an exit/back option at the bottom
+        options.push("↩ Back to Menu".to_string());
+
+        // 3. Prompt the user with inquire::Select
+        let prompt_result = Select::new("🎒 --- Inventory Bag ---", options).raw_prompt();
+
+        match prompt_result {
+            Ok(choice) => {
+                let selected_index = choice.index;
+
+                // If they selected the last option ("Back to Menu"), simply exit
+                if selected_index == self.inventory.len() {
+                    return;
+                }
+
                 let chosen_item = self.inventory[selected_index];
 
                 match chosen_item {
                     Item::WeaponItem(new_weapon) => {
                         let old_equipped = self.weapon;
                         self.weapon = new_weapon;
-                        self.inventory[selected_index] = Item::WeaponItem(old_equipped);
-                        println!("\nYou unequipped {} and equipped the \x1b[35m{}\x1b[0m", old_equipped.name(), self.weapon.name());
+
+                        // Don't put Fists into your backpack!
+                        if old_equipped == Weapon::Fists {
+                            self.inventory.remove(selected_index);
+                        } else {
+                            self.inventory[selected_index] = Item::WeaponItem(old_equipped);
+                        }
+
+                        println!(
+                            "\n✨ You unequipped {} and equipped the \x1b[35m{}\x1b[0m!",
+                            old_equipped.name(),
+                            self.weapon.name()
+                        );
                     }
+
                     Item::ConsumableItem(potion) => {
                         match potion {
                             Consumable::HealthPotion => {
                                 let heal_amount = 20;
                                 self.health = (self.health + heal_amount).min(self.max_health);
-                                println!("\nYou drink the {} and recover \x1b[32m{} HP\x1b[0m ({}/{})", 
-                                    potion.name(), heal_amount, self.health, self.max_health
+                                println!(
+                                    "\n🧪 You drink the {} and recover \x1b[32m{} HP\x1b[0m! ({}/{})",
+                                    potion.name(),
+                                    heal_amount,
+                                    self.health,
+                                    self.max_health
                                 );
                             }
                             Consumable::ElixirOfStrength => {
                                 self.strength += 2;
-                                println!("\nYou drink the {}! Your Strength has permenantly increased to {}!",
-                                    potion.name(), self.strength
+                                println!(
+                                    "\n⚡ You drink the {}! Your Strength has permanently increased to {}!",
+                                    potion.name(),
+                                    self.strength
                                 );
                             }
                         }
+                        // Remove consumed item from the bag
                         self.inventory.remove(selected_index);
                     }
                 }
-
-                
+            }
+            Err(_) => {
+                // If they press Escape or Ctrl+C, safely return to game
+                println!("\nClosed inventory.");
             }
         }
     }
