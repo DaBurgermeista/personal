@@ -97,7 +97,8 @@ fn main() -> io::Result<()> {
 
 #[cfg(test)]
 mod tests {
-
+    use super::*;
+    use ratatui::style::Style;
     #[test]
     fn handle_key_event() {
         let mut app = App::default();
