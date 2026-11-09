@@ -1,5 +1,4 @@
 // src/main.rs
-
 use std::env;
 
 fn main() {
@@ -17,7 +16,7 @@ fn main() {
     // Convert string to integer
     let unit: &str = &args[2];
 
-    let conversion = match unit.to_lowercase().as_str() {
+    let (converted_temp, target_unit) = match unit.to_lowercase().as_str() {
         "f" | "fahrenheit" => {
             ((temp - 32.0) * (5.0 / 9.0), "C")
         }
@@ -29,8 +28,7 @@ fn main() {
             std::process::exit(1)
         }
     };
-
-    
-    println!("Temperature: {:.2}°{}", conversion.0, conversion.1);
+  
+    println!("Temperature: {:.2}°{}", converted_temp, target_unit);
 
 }
