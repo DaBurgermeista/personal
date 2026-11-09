@@ -49,12 +49,12 @@ impl Player {
 
         table.set_header(vec![
             Cell::new("Stat").add_attribute(Attribute::Bold),
-            Cell::new("Value").add_attribute(Attribute.Bold),
+            Cell::new("Value").add_attribute(Attribute::Bold),
         ]);
 
         table.add_row(vec![
             Cell::new("Name"),
-            Cell::new(&self.name).fg(TableColor::Yellow).add_attribute(Attribute.Bold),
+            Cell::new(&self.name).fg(TableColor::Yellow).add_attribute(Attribute::Bold),
         ]);
         table.add_row(vec![
             Cell::new("Level"),
