@@ -5,7 +5,7 @@ use std::env;
 fn main() {
     
     // Collect args
-    let args: Vec<String> = env::args().collect();
+    let args: Vec<str> = env::args().collect();
 
     // Check for enough arguments
     if args.len() < 3 {
