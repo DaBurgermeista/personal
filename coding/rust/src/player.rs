@@ -45,7 +45,7 @@ impl Player {
         );
         let mut table = Table::new();
 
-        table.load_preset(comfy_table::presets::UTF8_ROUND_CORNERS);
+        table.load_preset(comfy_table::presets::UTF8_FULL);
 
         table.set_header(vec![
             Cell::new("Stat").add_attribute(Attribute::Bold),
