@@ -17,7 +17,19 @@ fn main() {
     // Convert string to integer
     let unit = &args[2];
 
-    let conversion = (temp - 32.0) * (5.0 / 9.0);
-    println!("{} C", conversion);
+    match unit.lowecase() {
+        "f" => {
+            let conversion = (temp - 32.0) * (5.0 / 9.0);
+            unit = "C";
+        }
+        "c" => {
+            let conversion = (temp * (9.0/5.0)) + 32;
+            unit = "F";
+        }
+        _ => println!("Not a valid Unit type"),
+    }
+
+    
+    println!("{} {}", conversion, unit);
 
 }
