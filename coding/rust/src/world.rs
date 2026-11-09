@@ -25,7 +25,7 @@ impl Location {
         }
     }
 
-    pub fn description(&self) => &str {
+    pub fn description(&self) -> &str {
         match self {
             Location::Tavern => "A warm fire crackles in the hearth. The smell of roasted meat and ale fills the air.",
             Location::TownSquare => "A bustling cobblestone square. Roads lead to the tavern, the forge, and the wild woods to the north.",
@@ -53,7 +53,7 @@ pub fn explore_location(player: &mut Player, current_loc: &mut Location) -> Game
             match Select::new("What do you do?", options).prompt() {
                 Ok("Rest by the fire (Heal to Full)") => {
                     player.health = player.max_health;
-                    println!("{HEAL_GREEN}You rest by the warm hearth. Your health is fully restored.{HEAL_GREEN:#}")
+                    println!("{HEAL_GREEN}You rest by the warm hearth. Your health is fully restored.{HEAL_GREEN:#}");
                     GameState::Exploring
                 }
                 Ok("Go Outside -> Town Square") => {
