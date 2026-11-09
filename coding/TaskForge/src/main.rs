@@ -16,9 +16,9 @@ fn main() {
     let temp: f64 = args[1].parse::<f64>().expect("Temp must be a number");
     // Convert string to integer
     let mut unit = &args[2];
-    let mut conversion = 0.0
+    let mut conversion = 0.0;
 
-    match unit.to_lowecase() {
+    match unit.to_lowercase() {
         "f" => {
             let conversion = (temp - 32.0) * (5.0 / 9.0);
             unit = "C";
