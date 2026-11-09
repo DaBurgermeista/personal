@@ -79,28 +79,54 @@ impl Player {
 
     pub fn show_inventory(&mut self) {
         if self.inventory.is_empty() {
-            println!("\nYour inventory bag is empty.");
+            println!("\n🎒 Your inventory bag is empty.");
             return;
         }
 
-        // 1. Build the menu options list dynamically from your actual items
+        // 1. Construct a beautiful item breakdown table
+        let mut table = Table::new();
+        table.load_preset(comfy_table::presets::UTF8_BORDERS_ONLY);
+        table.set_header(vec![
+            Cell::new("#").add_attribute(Attribute::Bold),
+            Cell::new("🎒 Item Name").add_attribute(Attribute::Bold),
+            Cell::new("Type").add_attribute(Attribute::Bold),
+            Cell::new("Effect / Base Dmg").add_attribute(Attribute::Bold),
+        ]);
+
+        for (index, item) in self.inventory.iter().enumerate() {
+            let (item_type, detail) = match item {
+                Item::WeaponItem(w) => ("Weapon", format!("+{} Base Damage", w.base_damage())),
+                Item::ConsumableItem(c) => match c {
+                    Consumable::HealthPotion => ("Potion", "Heals 20 HP".to_string()),
+                    Consumable::ElixirOfStrength => ("Elixir", "Permanently increases STR by 2".to_string()),
+                },
+            };
+
+            table.add_row(vec![
+                Cell::new(&(index + 1).to_string()),
+                Cell::new(item.name()).fg(TableColor::Cyan),
+                Cell::new(item_type),
+                Cell::new(&detail).fg(TableColor::Green),
+            ]);
+        }
+
+        // Print the beautifully formatted inventory table first!
+        println!("\n{}", table);
+
+        // 2. Build the select options for inquire
         let mut options: Vec<String> = self
             .inventory
             .iter()
             .map(|item| item.name().to_string())
             .collect();
-
-        // 2. Add an exit/back option at the bottom
         options.push("↩ Back to Menu".to_string());
 
-        // 3. Prompt the user with inquire::Select
-        let prompt_result = Select::new("--- Inventory Bag ---", options).raw_prompt();
+        let prompt_result = Select::new("Choose an item to use/equip from the table above:", options).raw_prompt();
 
         match prompt_result {
             Ok(choice) => {
                 let selected_index = choice.index;
 
-                // If they selected the last option ("Back to Menu"), simply exit
                 if selected_index == self.inventory.len() {
                     return;
                 }
@@ -112,7 +138,6 @@ impl Player {
                         let old_equipped = self.weapon;
                         self.weapon = new_weapon;
 
-                        // Don't put Fists into your backpack!
                         if old_equipped == Weapon::Fists {
                             self.inventory.remove(selected_index);
                         } else {
@@ -120,7 +145,7 @@ impl Player {
                         }
 
                         println!(
-                            "\nYou unequipped {} and equipped the \x1b[35m{}\x1b[0m!",
+                            "\n✨ You unequipped {} and equipped the \x1b[35m{}\x1b[0m!",
                             old_equipped.name(),
                             self.weapon.name()
                         );
@@ -132,7 +157,7 @@ impl Player {
                                 let heal_amount = 20;
                                 self.health = (self.health + heal_amount).min(self.max_health);
                                 println!(
-                                    "\nYou drink the {} and recover \x1b[32m{} HP\x1b[0m! ({}/{})",
+                                    "\n🧪 You drink the {} and recover \x1b[32m{} HP\x1b[0m! ({}/{})",
                                     potion.name(),
                                     heal_amount,
                                     self.health,
@@ -142,19 +167,17 @@ impl Player {
                             Consumable::ElixirOfStrength => {
                                 self.strength += 2;
                                 println!(
-                                    "\nYou drink the {}! Your Strength has permanently increased to {}!",
+                                    "\n⚡ You drink the {}! Your Strength has permanently increased to {}!",
                                     potion.name(),
                                     self.strength
                                 );
                             }
                         }
-                        // Remove consumed item from the bag
                         self.inventory.remove(selected_index);
                     }
                 }
             }
             Err(_) => {
-                // If they press Escape or Ctrl+C, safely return to game
                 println!("\nClosed inventory.");
             }
         }
