@@ -9,16 +9,15 @@ fn main() {
 
     // Check for enough arguments
     if args.len() < 3 {
-        eprintln!("Usage: {} <name> <count>", args[0]);
+        eprintln!("Usage: {} <temp> <unit>", args[0]);
         std::process::exit(1);
     }
 
-    let name = &args[1];
+    let temp: i32 = args[1].parse().expect("Temp must be a number");
     // Convert string to integer
-    let count: i32 = args[2].parse().expect("Count must be a number");
+    let count = &args[2];
 
-    for _ in 0..count {
-        println!("Hello, {}", name)
-    }
+    let conversion = (temp - 32) * (5 / 9);
+    println!("{} C", conversion);
 
 }
