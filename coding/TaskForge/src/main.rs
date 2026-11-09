@@ -5,7 +5,7 @@ use std::env;
 fn main() {
     
     // Collect args
-    let args: Vec<str> = env::args().collect();
+    let args: Vec<String> = env::args().collect();
 
     // Check for enough arguments
     if args.len() < 3 {
@@ -15,7 +15,7 @@ fn main() {
 
     let temp: f64 = args[1].parse::<f64>().expect("Temp must be a number");
     // Convert string to integer
-    let mut unit = &args[2];
+    let mut unit = &args[2].to_string();
     let mut conversion = 0.0;
 
     match unit.to_lowercase() {
