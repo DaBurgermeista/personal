@@ -61,7 +61,7 @@ impl Player {
         options.push("↩ Back to Menu".to_string());
 
         // 3. Prompt the user with inquire::Select
-        let prompt_result = Select::new("🎒 --- Inventory Bag ---", options).raw_prompt();
+        let prompt_result = Select::new(" --- Inventory Bag ---", options).raw_prompt();
 
         match prompt_result {
             Ok(choice) => {
@@ -87,7 +87,7 @@ impl Player {
                         }
 
                         println!(
-                            "\n✨ You unequipped {} and equipped the \x1b[35m{}\x1b[0m!",
+                            "\nYou unequipped {} and equipped the \x1b[35m{}\x1b[0m!",
                             old_equipped.name(),
                             self.weapon.name()
                         );
@@ -99,7 +99,7 @@ impl Player {
                                 let heal_amount = 20;
                                 self.health = (self.health + heal_amount).min(self.max_health);
                                 println!(
-                                    "\n🧪 You drink the {} and recover \x1b[32m{} HP\x1b[0m! ({}/{})",
+                                    "\nYou drink the {} and recover \x1b[32m{} HP\x1b[0m! ({}/{})",
                                     potion.name(),
                                     heal_amount,
                                     self.health,
@@ -109,7 +109,7 @@ impl Player {
                             Consumable::ElixirOfStrength => {
                                 self.strength += 2;
                                 println!(
-                                    "\n⚡ You drink the {}! Your Strength has permanently increased to {}!",
+                                    "\nYou drink the {}! Your Strength has permanently increased to {}!",
                                     potion.name(),
                                     self.strength
                                 );
