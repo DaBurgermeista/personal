@@ -98,8 +98,6 @@ fn main() -> io::Result<()> {
 #[cfg(test)]
 mod tests {
 
-    // -- snip --
-
     #[test]
     fn handle_key_event() {
         let mut app = App::default();
