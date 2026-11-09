@@ -1,0 +1,10 @@
+/home/mcclellandnavy/personal/coding/rust/target/debug/deps/fuzzy_matcher-39d86db6412f6b07.d: /home/mcclellandnavy/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/fuzzy-matcher-0.3.7/src/lib.rs /home/mcclellandnavy/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/fuzzy-matcher-0.3.7/src/clangd.rs /home/mcclellandnavy/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/fuzzy-matcher-0.3.7/src/skim.rs /home/mcclellandnavy/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/fuzzy-matcher-0.3.7/src/util.rs
+
+/home/mcclellandnavy/personal/coding/rust/target/debug/deps/libfuzzy_matcher-39d86db6412f6b07.rlib: /home/mcclellandnavy/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/fuzzy-matcher-0.3.7/src/lib.rs /home/mcclellandnavy/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/fuzzy-matcher-0.3.7/src/clangd.rs /home/mcclellandnavy/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/fuzzy-matcher-0.3.7/src/skim.rs /home/mcclellandnavy/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/fuzzy-matcher-0.3.7/src/util.rs
+
+/home/mcclellandnavy/personal/coding/rust/target/debug/deps/libfuzzy_matcher-39d86db6412f6b07.rmeta: /home/mcclellandnavy/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/fuzzy-matcher-0.3.7/src/lib.rs /home/mcclellandnavy/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/fuzzy-matcher-0.3.7/src/clangd.rs /home/mcclellandnavy/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/fuzzy-matcher-0.3.7/src/skim.rs /home/mcclellandnavy/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/fuzzy-matcher-0.3.7/src/util.rs
+
+/home/mcclellandnavy/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/fuzzy-matcher-0.3.7/src/lib.rs:
+/home/mcclellandnavy/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/fuzzy-matcher-0.3.7/src/clangd.rs:
+/home/mcclellandnavy/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/fuzzy-matcher-0.3.7/src/skim.rs:
+/home/mcclellandnavy/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/fuzzy-matcher-0.3.7/src/util.rs:
