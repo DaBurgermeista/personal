@@ -5,11 +5,14 @@ use anstyle::{AnsiColor, Color, Style};
 use inquire::{Select, Text, Confirm};
 // use rand::Rng;
 
+mod world;
 mod combat;
 mod enemy;
 mod items;
 mod player;
+
 use player::Player;
+use world::Location;
 
 pub const PALADIN_GOLD: Style = Style::new().fg_color(Some(Color::Ansi(AnsiColor::Yellow)));
 pub const DAMAGE_RED: Style = Style::new().fg_color(Some(Color::Ansi(AnsiColor::Red)));
@@ -17,7 +20,6 @@ pub const HEAL_GREEN: Style = Style::new().fg_color(Some(Color::Ansi(AnsiColor::
 pub const SYSTEM_GRAY: Style = Style::new().fg_color(Some(Color::Ansi(AnsiColor::BrightBlack)));
 
 enum GameState {
-    MainMenu,
     Exploring,
     Combat,
     Inventory,
@@ -34,7 +36,8 @@ fn main(){
         .unwrap_or_else(|_| "Hero".to_string());
 
     let mut player = Player::new(player_name);
-    let mut state = GameState::MainMenu;
+    let mut state = GameState::Exploring;
+    let mut current_location = Location::Tavern;
 
     println!("\nWelcome, {PALADIN_GOLD}{}{PALADIN_GOLD:#}!", player.name);
 
@@ -58,13 +61,9 @@ fn main(){
     loop {
         println!("{SYSTEM_GRAY}[HP: {HEAL_GREEN}{}/{}{HEAL_GREEN:#}{SYSTEM_GRAY}] | LVL: {}{SYSTEM_GRAY:#}", player.health, player.max_health, player.level);
         match state {
-            GameState::MainMenu => {
-                player.print_status();
-                state = run_main_menu();
-            }
             GameState::Exploring => {
                 println!("\n\x1b[32m[Exploring] You step into the dark woods...\x1b[0m");
-                state = GameState::Combat;
+                state = world::explore_location(&mut player, &mut current_location);
             }
             GameState::Exit => {
                 let ans = Confirm::new("Are you sure you want to quit?")
@@ -75,14 +74,14 @@ fn main(){
                         println!("\nThank you for playing!");
                         break;
                     },
-                    Ok(false) => state = GameState::MainMenu,
-                    Err(_) => state = GameState::MainMenu,
+                    Ok(false) => state = GameState::Exploring,
+                    Err(_) => state = GameState::Exploring,
                 }
                 
             }
             GameState::Combat => {
                 if combat::start_battle(&mut player) {
-                    state = GameState::MainMenu;
+                    state = GameState::Exploring;
                 } else {
                     println!("You died...");
                     state = GameState::Exit;
@@ -91,7 +90,7 @@ fn main(){
             } 
             GameState::Inventory => {
                 player.show_inventory();
-                state = GameState::MainMenu;
+                state = GameState::Exploring;
             }
         }
     }
@@ -115,7 +114,7 @@ fn run_main_menu() -> GameState {
         Ok("Quit Game") => GameState::Exit,
         _ => {
             println!("{SYSTEM_GRAY}Invalid option. Please type 1 or 2.{SYSTEM_GRAY:#}");
-            GameState::MainMenu
+            GameState::Exploring
         }
     }
 }

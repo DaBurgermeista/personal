@@ -4,6 +4,13 @@
 ## Current Tasks and Features in-progress
 + Inventory System
 + Loot Drop System
-+ Gold / Currency
 + More player stats
 + A shop system for spending gold and selling loot
+
+## 2026-11-09
++ Added gold drops from enemeies
+
+## 2026-11-06
+### Added Features
++ Updated UI with new crate library
++ Updated ANSI Colors with new crate library

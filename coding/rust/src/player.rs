@@ -8,6 +8,7 @@ pub struct Player {
     pub max_health: i32,
     pub level: u32,
     pub experience: i32,
+    pub gold: i32,
     pub strength: i32,
     pub weapon: Weapon,
     pub inventory: Vec<Item>,
@@ -23,6 +24,7 @@ impl Player {
             max_health: 35,
             level: 1,
             experience: 0,
+            golf: 0,
             strength: 10,
             weapon: Weapon::Fists,
             inventory: vec![
@@ -139,6 +141,10 @@ impl Player {
             println!("\nLEVEL UP! You are now Level {}", self.level);
             println!("Max HP increased! Current HP fully restored to {}.", self.max_health);
         }
+    }
+
+    pub fn add_gold(&mut self, amount: i32) {
+        self.gold += amount;
     }
 }
 

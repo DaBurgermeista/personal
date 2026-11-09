@@ -18,7 +18,7 @@ pub fn start_battle(player: &mut Player) -> bool {
     let mut enemy = Enemy::spawn_random();
     let mut rng = rand::thread_rng();
 
-    println!("\n{DAMAGE_RED}A wild {PALADIN_GOLD}{}{PALADIN_GOLD:#} {DAMAGE_RED}rushes out from the shadows!\x1b[0m", enemy.name);
+    println!("\n{DAMAGE_RED}A wild {PALADIN_GOLD}{}{PALADIN_GOLD:#} {DAMAGE_RED}rushes out from the shadows!{DAMAGE_RED:#}", enemy.name);
 
     while player.health > 0 && enemy.health > 0 {
         print_combat_status(player, &enemy);
@@ -53,10 +53,11 @@ pub fn start_battle(player: &mut Player) -> bool {
         }
     }
 
-    println!("\n\x1b[32mVictory! You have vanquished the {}!\x1b[0m", enemy.name);
+    println!("\n{PALADIN_GOLD}Victory! You have vanquished the {}{PALADIN_GOLD:#}", enemy.name);
     player.add_experience(enemy.exp);
     let gold_gain = rng.gen_range(0..=(enemy.level * 10));
     if gold_gain > 0 {
+        player.add_gold(gold_gain);
         println!("{PALADIN_GOLD}{} gold found!{PALADIN_GOLD:#}", gold_gain);
     }
     return true
