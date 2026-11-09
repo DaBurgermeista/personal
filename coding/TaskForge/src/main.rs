@@ -1,10 +1,10 @@
 // src/main.rs
 
-use rataui::{DefaultTerminal, Frame};
+use ratatui::{DefaultTerminal, Frame};
 
 fn main() -> color_eyre::Result<()> {
     color_eyre::install();
-    rataui::run(app)?;
+    ratatui::run(app)?;
     Ok(())
 }
 
