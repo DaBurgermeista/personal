@@ -26,7 +26,7 @@ impl App {
     }
 
     fn draw(&self, frame: &mut Frame) {
-        frame.render_widget(self, frame.area());
+        frame.render(self, frame.area());
     }
 
     fn handle_event(&mut self) -> io::Result<()> {
