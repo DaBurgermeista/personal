@@ -62,7 +62,6 @@ fn main(){
         println!("{SYSTEM_GRAY}[HP: {HEAL_GREEN}{}/{}{HEAL_GREEN:#}{SYSTEM_GRAY}] | LVL: {}{SYSTEM_GRAY:#}", player.health, player.max_health, player.level);
         match state {
             GameState::Exploring => {
-                println!("\n\x1b[32m[Exploring] You step into the dark woods...\x1b[0m");
                 state = world::explore_location(&mut player, &mut current_location);
             }
             GameState::Exit => {
