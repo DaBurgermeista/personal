@@ -39,10 +39,6 @@ impl Player {
 
     // A method to show player status
     pub fn print_status(&self) {
-        println!(
-            "\n--- Player Status ---\nName:   {}\nLVL:    {}(XP: {})\nHP: \x1b[31m{}/{}\x1b[0m\nWeapon: {}\n",
-            self.name, self.level, self.experience, self.health, self.max_health,self.weapon.name()
-        );
         let mut table = Table::new();
 
         table.load_preset(comfy_table::presets::UTF8_FULL);
@@ -76,6 +72,8 @@ impl Player {
             Cell::new("Equipped Weapon"),
             Cell::new(self.weapon.name()).fg(TableColor::Magenta),
         ]);
+
+        println!("\n{}", table);
 
     }
 
