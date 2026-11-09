@@ -18,11 +18,11 @@ fn main() {
     let mut unit: &str = &args[2];
 
     let conversion = match unit.to_lowercase().as_str() {
-        "f" => {
+        "f" | "fahrenheit" => {
             unit = "C";
             (temp - 32.0) * (5.0 / 9.0)
         }
-        "c" => {
+        "c" | "celcius" => {
             unit = "F";
             (temp * (9.0/5.0)) + 32.0
         }
