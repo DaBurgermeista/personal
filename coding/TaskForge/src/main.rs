@@ -17,7 +17,7 @@ fn main() {
     // Convert string to integer
     let mut unit: &str = &args[2];
 
-    let conversion = match unit.to_lowercase().to_str() {
+    let conversion = match unit.to_lowercase().as_str() {
         "f" => {
             unit = "C";
             (temp - 32.0) * (5.0 / 9.0)
@@ -30,7 +30,7 @@ fn main() {
             println!("Not a valid Unit type");
             0.0
         }
-    }
+    };
 
     
     println!("Temperature: {:.2}°{}", conversion, unit);
