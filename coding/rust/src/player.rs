@@ -1,6 +1,7 @@
 // src/player.rs
 
 use inquire::Select;
+use comfy_table::{Table, Cell, Color as TableColor, Attribute};
 use crate::items::{Item, Weapon, Consumable};
 
 pub struct Player {
@@ -42,11 +43,45 @@ impl Player {
             "\n--- Player Status ---\nName:   {}\nLVL:    {}(XP: {})\nHP: \x1b[31m{}/{}\x1b[0m\nWeapon: {}\n",
             self.name, self.level, self.experience, self.health, self.max_health,self.weapon.name()
         );
+        let mut table = Table::new();
+
+        table.load_preset(comfy_table::presets::UTF8_ROUND_CORNERS);
+
+        table.set_headers(vec![
+            Call::new("Stat").add_attribute(Attribute::Bold),
+            Call::new("Value").add_attribute(Attribute.Bold),
+        ]);
+
+        table.add_row(vec![
+            Cell::new("Name"),
+            Cell::new(&self.name).fg(TableColor::Yellow).add_attribute(Attribute.Bold),
+        ]);
+        table.add_row(vec![
+            Cell::new("Level"),
+            Cell::new(&self.level.to_string()).fg(TableColor::Cyan),
+        ]);
+        table.add_row(vec![
+            Cell::new("Experience"),
+            Cell::new(&format!("{} XP", self.experience)),
+        ]);
+        table.add_row(vec![
+            Cell::new("Health"),
+            Cell::new(&format!("{}/{} HP", self.health, self.max_health)).fg(TableColor::Green),
+        ]);
+        table.add_row(vec![
+            Cell::new("Strength (STR)"),
+            Cell::new(&self.strength.to_string()).fg(TableColor::Red),
+        ]);
+        table.add_row(vec![
+            Cell::new("Equipped Weapon"),
+            Cell::new(self.weapon.name()).fg(TableColor::Magenta),
+        ]);
+
     }
 
     pub fn show_inventory(&mut self) {
         if self.inventory.is_empty() {
-            println!("\n🎒 Your inventory bag is empty.");
+            println!("\nYour inventory bag is empty.");
             return;
         }
 
@@ -61,7 +96,7 @@ impl Player {
         options.push("↩ Back to Menu".to_string());
 
         // 3. Prompt the user with inquire::Select
-        let prompt_result = Select::new(" --- Inventory Bag ---", options).raw_prompt();
+        let prompt_result = Select::new("--- Inventory Bag ---", options).raw_prompt();
 
         match prompt_result {
             Ok(choice) => {
